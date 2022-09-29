@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:reorderable_grid_view/reorderable_grid_view.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-import '../models/model.dart';
-
  class HomePage extends StatefulWidget {
  const HomePage({Key? key,this.parentModel,this.dats, this.index}) : super(key: key);
  final ParentModel? parentModel;
@@ -40,23 +38,6 @@ import '../models/model.dart';
     super.initState();
     initData();
     initTts();
-
-
-
-    // for(int i=0;i <imageUrl.length; i++){
-    //   countuuid++; //print(modelList.length);
-    //   modelList.add(imageModel(id: "uuid=${countuuid.toString()}",title: imageUrl[i],image: imageUrl[i],order: modelList.length));
-    //   print(modelList.length);
-    // }
-   //  vmp==[]?modelList.forEach((e) {modelwid.add(Card(key: ValueKey(e.image),child: Column(
-   //    children: [
-   //      Expanded(child: Text(e.id.toString())),
-   //      Expanded(child: Text(e.order.toString())),
-   //      Expanded(flex:4,child: Image.asset(e.image!)),
-   //    ],
-   //  ),));}):modelList=vmp;
-   // // modelList.sort((a,b){return a.id!.compareTo(b.id!);});
-
   }
   @override
   void dispose(){
@@ -112,8 +93,7 @@ import '../models/model.dart';
     }
 
     for(var item in decodedData){
-     // vmp.add(ImageModel.fromJson(item));
-      vmp.add(ParentModel.fromJson(item));
+    vmp.add(ParentModel.fromJson(item));
     }
 
     countuuid=int.parse(prefs.getString('uuid')??'0');
@@ -129,7 +109,6 @@ import '../models/model.dart';
       if(image==null) return;
       countuuid++;
       prefs.setString('uuid', countuuid.toString());
-      //final imageTemp=File(image.path);
       setState(() {
 
       });
@@ -183,8 +162,6 @@ import '../models/model.dart';
               ),)).toList(),
 
         onReorder: (int oldIndex, int newIndex) {
-       // imageModel path= modelList.removeAt(oldIndex);
-       // modelList.insert(newIndex, path);
        int firstItemIndex= modelList.indexOf(modelList[oldIndex]);
        int nextItemIndex= modelList.indexOf(modelList[newIndex]);
        if(firstItemIndex>nextItemIndex){
